@@ -294,11 +294,10 @@ module Celluloid
 
     # Handle any exceptions that occur within a running actor
     def handle_crash(exception)
-      # TODO: add meta info
-      Internals::Logger.crash("Actor crashed!", exception)
+      exception(exception);
       shutdown ExitEvent.new(behavior_proxy, exception)
     rescue => ex
-      Internals::Logger.crash("Actor#handle_crash CRASHED!", ex)
+      exception(exception);
     end
 
     # Handle cleaning up this actor after it exits
