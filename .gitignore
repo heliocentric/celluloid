@@ -8,3 +8,4 @@ tmp/
 Gemfile.lock
 log
 .DS_Store
+/nbproject/private/

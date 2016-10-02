@@ -294,6 +294,7 @@ module Celluloid
 
     # Handle any exceptions that occur within a running actor
     def handle_crash(exception)
+	  puts "test"
       exception(exception);
       shutdown ExitEvent.new(behavior_proxy, exception)
     rescue => ex
