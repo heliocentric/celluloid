@@ -294,9 +294,13 @@ module Celluloid
 
     # Handle any exceptions that occur within a running actor
     def handle_crash(exception)
-      task.exception(exception);
+		
+        proxy = Proxy::Block.new(mailbox, "UnknownClass")
+        proxy.method_missing(:exception, [exception], nil)
       shutdown ExitEvent.new(behavior_proxy, exception)
     rescue => ex
+        proxy = Proxy::Block.new(mailbox, "UnknownClass")
+        proxy.method_missing(:exception, [exception], nil)
       task.exception(exception);
     end
 
